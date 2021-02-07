@@ -109,8 +109,8 @@ class CategoriaController extends Controller
             $categoria->nombre = $request->nombre_categoria_para_laravel;
             $categoria->color = $request->color_para_laravel;
 
-            Storage::disk('categorias')->put($store->nombre.'.ico',  File::get($request->imagen_para_laravel));
-            $store->imagen ='resources/image/categorias/'.$store->nombre.'.ico';
+            Storage::disk('categorias')->put($categoria->nombre.'.ico',  File::get($request->imagen_para_laravel));
+            $categoria->imagen ='resources/image/categorias/'.$categoria->nombre.'.ico';
             
             // Guardamos los cambios en base de datos
             $categoria->save();

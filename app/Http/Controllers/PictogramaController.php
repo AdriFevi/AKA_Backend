@@ -119,14 +119,14 @@ class PictogramaController extends Controller
             $pictograma->nombre = $request->nombre_para_laravel;
             $pictograma->categoria_id = $request->categoria_id_para_laravel;
 
-            Storage::disk('pictogramas')->put($store->nombre.'.ico',  File::get($request->imagen_para_laravel));
-            $store->imagen = 'resources/image/categorias/'.$store->nombre.'.ico';
+            Storage::disk('pictogramas')->put($pictograma->nombre.'.ico',  File::get($request->imagen_para_laravel));
+            $pictograma->imagen = 'resources/image/categorias/'.$pictograma->nombre.'.ico';
             
             // Guardamos los cambios en base de datos
             $pictograma->save();
 
             return response()->json([
-                'message' => 'Pictograma Actualizado correctamente'
+                'message' => 'Pictograma actualizado correctamente'
             ], 201);
          }
          else {
