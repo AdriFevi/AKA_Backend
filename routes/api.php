@@ -67,7 +67,7 @@ Route::group([
                 'password' => bcrypt($request->password),
                 'is_root' => $defecto
             ]);
-
+            
             return response()->json([
                 'message' => 'Se ha creado el usuario correctamente!'
             ], 201);
