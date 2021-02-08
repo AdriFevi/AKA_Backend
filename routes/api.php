@@ -27,12 +27,9 @@ Route::group([
             ], 401);
         
         $user = $request->user();
-        
-        
-        $tokenResult = $user->createToken('Personal Access Token');
-            
+        $tokenResult = $user->createToken('Personal Access Token');      
         $token = $tokenResult->token;
-        if ($request->remember_me)
+        //if ($request->remember_me)
         $token->expires_at = Carbon::now()->addCenturies(1);
         $token->save();
         
@@ -60,7 +57,7 @@ Route::group([
         }
         
         else {
-            $defecto = false;
+            $defecto = true;
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,

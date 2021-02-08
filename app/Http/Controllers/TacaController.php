@@ -49,12 +49,6 @@ class TacaController extends Controller
             if ($tablero != null && $categoria != null) {
 
                 $categoria_array = DB::table('tacas')->select('categoria_id')->where('tablero_id', '=', $request->idTablero_para_laravel)->get();
-
-                //dd($categoria_array); --> Esta no sirve para nada.
-                //var_dump($categoria_array[0]->categoria_id); --> Esto no sirve para nada.
-
-                //echo $categoria_array;
-                //echo $categoria_array_lenght;
                 
                 $categoria_array_lenght = count($categoria_array);
                 $cuenta = FALSE;
@@ -84,7 +78,7 @@ class TacaController extends Controller
             else {
                 return response()->json([
                     'message' => 'El tablero o la categoria no existe(n).'
-                ], 201);
+                ], 404);
             }
         }
         else {

@@ -48,14 +48,13 @@ class PictogramaController extends Controller
         if ($tipo_usr == 1) {
 
             $buscar_categoria=categoria::find($request->categoria_id_para_laravel);
-
             if ($buscar_categoria != null) {
                 $store = new pictograma;
                 $store->nombre = $request->nombre_para_laravel;
                 $store->categoria_id = $request->categoria_id_para_laravel;
                 
                 Storage::disk('pictogramas')->put($store->nombre.'.ico',  File::get($request->imagen_para_laravel));
-                $store->imagen = 'resources/image/categorias/'.$store->nombre.'.ico';
+                $store->imagen = 'resources/image/pictogramas/'.$store->nombre.'.ico';
 
                 $store->save();
 
@@ -108,21 +107,17 @@ class PictogramaController extends Controller
     public function update(Request $request)
     {
         $tipo_usr = $request->tipo_de_usuario_para_laravel;
-         // Busco El pictograma
-         if ($tipo_usr == 1) {
-        $pictograma=pictograma::find($request->id_del_pictograma_para_laravel);
+        if ($tipo_usr == 1) {
 
-        //Miramos si este existe
+        $pictograma=pictograma::find($request->id_del_pictograma_para_laravel);
         if ($pictograma != null) {
 
-            // Asignamos nuevos valores a los campos
             $pictograma->nombre = $request->nombre_para_laravel;
             $pictograma->categoria_id = $request->categoria_id_para_laravel;
 
             Storage::disk('pictogramas')->put($pictograma->nombre.'.ico',  File::get($request->imagen_para_laravel));
-            $pictograma->imagen = 'resources/image/categorias/'.$pictograma->nombre.'.ico';
+            $pictograma->imagen = 'resources/image/pictogramas/'.$pictograma->nombre.'.ico';
             
-            // Guardamos los cambios en base de datos
             $pictograma->save();
 
             return response()->json([
